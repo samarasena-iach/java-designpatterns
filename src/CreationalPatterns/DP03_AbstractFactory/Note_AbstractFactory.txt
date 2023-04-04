@@ -1,0 +1,60 @@
+03. Abstract Factory Pattern
+
+Abstract Factory design pattern is one of the Creational patterns.
+Abstract Factory pattern is almost similar to Factory Pattern except the fact that its more like factory of factories.
+
+Abstract Factory
+    If you are familiar with factory design pattern in java, you will notice that we have a single Factory class.
+
+    This factory class returns different subclasses based on the input provided and factory class uses if-else or
+    switch statement to achieve this.
+
+    In the Abstract Factory pattern, we get rid of if-else block and have a factory class for each sub-class.
+    Then an Abstract Factory class that will return the sub-class based on the input factory class.
+
+    At first, it seems confusing but once you see the implementation, it’s really easy to grasp and understand the
+    minor difference between Factory and Abstract Factory pattern.
+
+    Like our factory pattern post, we will use the same superclass and sub-classes.
+
+    ## Abstract Factory Design Pattern Super Class and Subclasses
+        Super Class : [Implementation : Computer.java]
+        Sub Classes : [Implementation : PC.java , Server.java]
+
+    ## Factory Class for Each subclass
+        First of all we need to create a Abstract Factory interface or abstract class.
+        [Implementation : ComputerAbstractFactory.java]
+        Notice that createComputer() method is returning an instance of super class Computer.
+
+        Now our factory classes will implement this interface and return their respective sub-class.
+        [Implementation : PCFactory.java]
+
+        Similarly we will have a factory class for Server subclass.
+        [Implementation : ServerFactory.java]
+
+        Now we will create a consumer class that will provide the entry point for the client classes to create sub-classes.
+        [Implementation : ComputerFactory.java]
+
+        Notice that its a simple class and getComputer method is accepting ComputerAbstractFactory argument and
+        returning Computer object.
+        At this point the implementation must be getting clear.
+
+        Let’s write a simple test method and see how to use the abstract factory to get the instance of sub-classes.
+        [Implementation : TestDesignPatterns.java]
+
+        Output of the above program will be:
+        AbstractFactory PC Config ==> [RAM = 2 GB, HDD = 500 GB, CPU = 2.4 GHz]
+        AbstractFactory Server Config ==> [RAM = 16 GB, HDD = 1 TB, CPU = 2.9 GHz]
+
+Abstract Factory Design Pattern Benefits
+    * Abstract Factory design pattern provides approach to code for interface rather than implementation.
+
+    * Abstract Factory pattern is “factory of factories” and can be easily extended to accommodate more
+    products, for example we can add another sub-class Laptop and a factory LaptopFactory.
+
+    * Abstract Factory pattern is robust and avoid conditional logic of Factory pattern.
+
+Abstract Factory Design Pattern Examples in JDK
+    * javax.xml.parsers.DocumentBuilderFactory#newInstance()
+    * javax.xml.transform.TransformerFactory#newInstance()
+    * javax.xml.xpath.XPathFactory#newInstance()
